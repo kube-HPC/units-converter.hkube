@@ -75,6 +75,12 @@ describe('Test', function () {
                 expect(0).to.equals(converter.getCpuInCore());
             });
         });
+        describe('parseUnitObj', function () {
+            it('parseUnitObj', async function () {
+                expect(500).to.equals(converter.parseUnitObj('500m').val);
+                expect('m').to.equals(converter.parseUnitObj('500m').unit);
+            });
+        });
     });
 
 });
