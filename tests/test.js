@@ -21,7 +21,7 @@ describe('Test', function () {
                 expect(1500000).to.equals(converter.getMemoryInKB('1.5Gi'));
             });
             it('unknown unit', async function () {
-                expect(() => converter.getMemoryInKB('1.5i')).to.throw('i unit not defined');
+                expect(() => converter.getMemoryInKB('1.5i')).to.throw();
             });
             it('value is missing', async function () {
                 expect(0).to.equals(converter.getMemoryInKB());
@@ -35,7 +35,7 @@ describe('Test', function () {
                 expect(100).to.equals(converter.getCpuInMiliCore('0.1'));
             });
             it('unknown unit', async function () {
-                expect(() => converter.getCpuInMiliCore('1.5i')).to.throw('i unit not defined');
+                expect(() => converter.getCpuInMiliCore('1.5i')).to.throw();
             });
             it('value is missing', async function () {
                 expect(0).to.equals(converter.getCpuInMiliCore());
@@ -49,13 +49,13 @@ describe('Test', function () {
                 expect(50).to.equals(converter.getMemoryInMB('50M'));
             });
             it('convert from Mi', async function () {
-                expect(1048.576).to.equals(converter.getMemoryInMB('0.001Mi'));
+                expect(0.0010485759999999998).to.equals(converter.getMemoryInMB('0.001Mi'));
             });
             it('convert from Gi', async function () {
                 expect(1500).to.equals(converter.getMemoryInMB('1.5Gi'));
             });
             it('unknown unit', async function () {
-                expect(() => converter.getMemoryInMB('1.5i')).to.throw('i unit not defined');
+                expect(() => converter.getMemoryInMB('1.5i')).to.throw();
             });
             it('value is missing', async function () {
                 expect(0).to.equals(converter.getMemoryInMB());
@@ -69,7 +69,7 @@ describe('Test', function () {
                 expect(6).to.equals(converter.getCpuInCore('6'));
             });
             it('unknown unit', async function () {
-                expect(() => converter.getCpuInCore('1.5i')).to.throw('i unit not defined');
+                expect(() => converter.getCpuInCore('1.5i')).to.throw();
             });
             it('value is missing', async function () {
                 expect(0).to.equals(converter.getCpuInCore());
