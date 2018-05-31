@@ -11,17 +11,17 @@ describe('Test', function () {
             it('convert from Ki', async function () {
                 expect(500).to.equals(converter.getMemoryInKB('500Ki'));
             });
-            it('convert from M', async function () {
-                expect(50000).to.equals(converter.getMemoryInKB('50M'));
-            });
             it('convert from Mi', async function () {
-                expect(1.048576).to.equals(converter.getMemoryInKB('0.001Mi'));
+                expect(50000).to.equals(converter.getMemoryInKB('50Mi'));
             });
             it('convert from Gi', async function () {
                 expect(1500000).to.equals(converter.getMemoryInKB('1.5Gi'));
             });
             it('unknown unit', async function () {
                 expect(() => converter.getMemoryInKB('1.5i')).to.throw();
+            });
+            it('memory must be >= 0', async function () {
+                expect(() => converter.getMemoryInKB('-500Ki')).to.throw();
             });
             it('value is missing', async function () {
                 expect(0).to.equals(converter.getMemoryInKB());
@@ -45,11 +45,8 @@ describe('Test', function () {
             it('convert from Ki', async function () {
                 expect(0.5).to.equals(converter.getMemoryInMB('500Ki'));
             });
-            it('convert from M', async function () {
-                expect(50).to.equals(converter.getMemoryInMB('50M'));
-            });
             it('convert from Mi', async function () {
-                expect(0.0010485759999999998).to.equals(converter.getMemoryInMB('0.001Mi'));
+                expect(50).to.equals(converter.getMemoryInMB('50Mi'));
             });
             it('convert from Gi', async function () {
                 expect(1500).to.equals(converter.getMemoryInMB('1.5Gi'));
