@@ -23,9 +23,6 @@ describe('Test', function () {
             it('memory must be >= 0', function () {
                 expect(() => converter.getMemoryInKi('-500Ki')).to.throw();
             });
-            it('value is missing', function () {
-                expect(() => converter.getMemoryInKi(0)).to.throw();
-            });
         });
         describe('getCpuInMCore', function () {
             it('convert from m', function () {
@@ -56,9 +53,6 @@ describe('Test', function () {
             });
             it('no unit', function () {
                 expect(() => converter.getMemoryInMi('1.5')).to.throw();
-            });
-            it('value is missing', function () {
-                expect(() => converter.getMemoryInMi(0)).to.throw();
             });
         });
         describe('getCpuInCore', function () {
