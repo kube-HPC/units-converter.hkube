@@ -35,7 +35,7 @@ describe('Test', function () {
                 expect(() => converter.getCpuInMCore('1.5i')).to.throw();
             });
             it('value is missing', function () {
-                expect(() => converter.getCpuInMCore(0)).to.throw();
+                expect(0).to.equals(converter.getCpuInMCore(0));
             });
         });
         describe('getMemoryInMi', function () {
@@ -66,7 +66,7 @@ describe('Test', function () {
                 expect(() => converter.getCpuInCore('1.5i')).to.throw();
             });
             it('value is missing', function () {
-                expect(() => converter.getCpuInCore(0)).to.throw();
+                expect(0).to.equals(converter.getCpuInCore(0));
             });
         });
         describe('parseUnitObj', function () {
