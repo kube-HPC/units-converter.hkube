@@ -39,6 +39,15 @@ describe('Test', function () {
             });
         });
         describe('getMemoryInMi', function () {
+            it('convert from null', function () {
+                expect(() => converter.getMemoryInMi(null)).to.throw();
+            });
+            it('convert from empty string', function () {
+                expect(() => converter.getMemoryInMi('')).to.throw();
+            });
+            it('convert from 0', function () {
+                expect(0).to.equals(converter.getMemoryInMi(0));
+            });
             it('convert from Ki', function () {
                 expect(0.48828125).to.equals(converter.getMemoryInMi('500Ki'));
             });
@@ -53,6 +62,9 @@ describe('Test', function () {
             });
             it('no unit', function () {
                 expect(() => converter.getMemoryInMi('1.5')).to.throw();
+            });
+            it('simple int', function () {
+                expect(1.5).to.equals(converter.getMemoryInMi(1.5));
             });
         });
         describe('getCpuInCore', function () {
