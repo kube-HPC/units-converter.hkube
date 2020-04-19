@@ -4,6 +4,27 @@ const expect = chai.expect;
 
 describe('Test', function () {
     describe('Units converter', function () {
+        describe('getMemoryInBytes', function () {
+            it('convert from Ki', function () {
+                const res = converter.getMemoryInBytes('500Ki');
+                expect(res).to.equals(512000);
+            });
+            it('convert from Mi', function () {
+                expect(52428800).to.equals(converter.getMemoryInBytes('50Mi'));
+            });
+            it('convert from Gi', function () {
+                expect(1610612736).to.equals(converter.getMemoryInBytes('1.5Gi'));
+            });
+            it('unknown unit', function () {
+                expect(() => converter.getMemoryInBytes('1.5i')).to.throw();
+            });
+            it('no unit', function () {
+                expect(() => converter.getMemoryInBytes('1.5')).to.throw();
+            });
+            it('memory must be >= 0', function () {
+                expect(() => converter.getMemoryInBytes('-500Ki')).to.throw();
+            });
+        });
         describe('getMemoryInKi', function () {
             it('convert from Ki', function () {
                 expect(500).to.equals(converter.getMemoryInKi('500Ki'));
