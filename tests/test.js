@@ -4,6 +4,27 @@ const expect = chai.expect;
 
 describe('Test', function () {
     describe('Units converter', function () {
+        describe('getMemoryInBytes', function () {
+            it('convert from Ki', function () {
+                const res = converter.getMemoryInBytes('500Ki');
+                expect(res).to.equals(512000);
+            });
+            it('convert from Mi', function () {
+                expect(52428800).to.equals(converter.getMemoryInBytes('50Mi'));
+            });
+            it('convert from Gi', function () {
+                expect(1610612736).to.equals(converter.getMemoryInBytes('1.5Gi'));
+            });
+            it('unknown unit', function () {
+                expect(() => converter.getMemoryInBytes('1.5i')).to.throw();
+            });
+            it('no unit', function () {
+                expect(() => converter.getMemoryInBytes('1.5')).to.throw();
+            });
+            it('memory must be >= 0', function () {
+                expect(() => converter.getMemoryInBytes('-500Ki')).to.throw();
+            });
+        });
         describe('getMemoryInKi', function () {
             it('convert from Ki', function () {
                 expect(500).to.equals(converter.getMemoryInKi('500Ki'));
@@ -39,6 +60,15 @@ describe('Test', function () {
             });
         });
         describe('getMemoryInMi', function () {
+            it('convert from null', function () {
+                expect(() => converter.getMemoryInMi(null)).to.throw();
+            });
+            it('convert from empty string', function () {
+                expect(() => converter.getMemoryInMi('')).to.throw();
+            });
+            it('convert from 0', function () {
+                expect(0).to.equals(converter.getMemoryInMi(0));
+            });
             it('convert from Ki', function () {
                 expect(0.48828125).to.equals(converter.getMemoryInMi('500Ki'));
             });
@@ -53,6 +83,9 @@ describe('Test', function () {
             });
             it('no unit', function () {
                 expect(() => converter.getMemoryInMi('1.5')).to.throw();
+            });
+            it('simple int', function () {
+                expect(1.5).to.equals(converter.getMemoryInMi(1.5));
             });
         });
         describe('getCpuInCore', function () {

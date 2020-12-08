@@ -1,6 +1,6 @@
 {
   "name": "@hkube/units-converter",
-  "version": "1.0.12",
+  "version": "1.0.15",
   "description": "units converter",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "start": "node app",
     "build": "npm publish"
   },
-  "author": "tal",
+  "author": "Hkube",
   "license": "ISC",
   "dependencies": {
     "enumify": "^1.0.4",
