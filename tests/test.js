@@ -5,6 +5,17 @@ const expect = chai.expect;
 describe('Test', function () {
     describe('Units converter', function () {
         describe('getMemoryInBytes', function () {
+            it('convert from Bytes', function () {
+                const res = converter.getMemoryInBytes('1023', true);
+                expect(res).to.equals(1023);
+            });
+            it('fail to convert from Bytes', function () {
+                expect(()=>converter.getMemoryInBytes('1023')).to.throw('memory unit must be one of Ki,M,Mi,Gi,m,K,G,T,Ti,P,Pi,E,Ei');
+            });
+            it('convert from Bytes number', function () {
+                const res = converter.getMemoryInBytes(1023, true);
+                expect(res).to.equals(1023);
+            });
             it('convert from Ki', function () {
                 const res = converter.getMemoryInBytes('500Ki');
                 expect(res).to.equals(512000);
@@ -44,6 +55,17 @@ describe('Test', function () {
             it('memory must be >= 0', function () {
                 expect(() => converter.getMemoryInKi('-500Ki')).to.throw();
             });
+            it('convert from Bytes', function () {
+                const res = converter.getMemoryInKi('1024', true);
+                expect(res).to.equals(1);
+            });
+            it('fail to convert from Bytes', function () {
+                expect(()=>converter.getMemoryInKi('1024')).to.throw('memory unit must be one of Ki,M,Mi,Gi,m,K,G,T,Ti,P,Pi,E,Ei');
+            });
+            it('convert from Bytes number', function () {
+                const res = converter.getMemoryInKi(1024, true);
+                expect(res).to.equals(1);
+            });
         });
         describe('getCpuInMCore', function () {
             it('convert from m', function () {
@@ -67,7 +89,7 @@ describe('Test', function () {
                 expect(() => converter.getMemoryInMi('')).to.throw();
             });
             it('convert from 0', function () {
-                expect(0).to.equals(converter.getMemoryInMi(0));
+                expect(converter.getMemoryInMi(0, true)).to.equals(0);
             });
             it('convert from Ki', function () {
                 expect(0.48828125).to.equals(converter.getMemoryInMi('500Ki'));
@@ -85,7 +107,7 @@ describe('Test', function () {
                 expect(() => converter.getMemoryInMi('1.5')).to.throw();
             });
             it('simple int', function () {
-                expect(1.5).to.equals(converter.getMemoryInMi(1.5));
+                expect(converter.getMemoryInMi(1024*1024, true)).to.equals(1);
             });
         });
         describe('getCpuInCore', function () {
